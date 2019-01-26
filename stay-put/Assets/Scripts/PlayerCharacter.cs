@@ -7,6 +7,7 @@ public class PlayerCharacter : MonoBehaviour
     public float walkingSpeed;
     [HideInInspector]
     public Car car;
+    [HideInInspector]
     public LookAt mainCamera;
 
     private Rigidbody rbody;
