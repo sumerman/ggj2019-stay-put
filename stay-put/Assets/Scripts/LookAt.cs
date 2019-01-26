@@ -8,7 +8,7 @@ public class LookAt : MonoBehaviour
     private Transform target;
     private Vector3 relativePosition;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         relativePosition = gameObject.transform.position - target.gameObject.transform.position;
     }

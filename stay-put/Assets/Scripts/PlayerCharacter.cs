@@ -15,12 +15,18 @@ public class PlayerCharacter : MonoBehaviour
     private bool onSpawnFrame = true;
     private bool canEnterCar = false;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        Debug.Log("wake");
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<LookAt>();
         rbody = gameObject.GetComponent<Rigidbody>();
         GameObject ui = GameObject.FindGameObjectWithTag("UI");
         if (ui) notifications = ui.GetComponent<ScreenNotifications>();
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -42,8 +48,8 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Move()
     {
-        float xTrans = Input.GetAxis("Vertical") * walkingSpeed;
-        float zTrans = -Input.GetAxis("Horizontal") * walkingSpeed;
+        float xTrans = -Input.GetAxis("Horizontal") * walkingSpeed;
+        float zTrans = -Input.GetAxis("Vertical") * walkingSpeed;
         rbody.MovePosition(rbody.position + new Vector3(xTrans, 0, zTrans));
     }
 
@@ -59,7 +65,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Spawn(Vector3 position)
     {
-        mainCamera.SetTarget(this.gameObject);
+        mainCamera.gameObject.SetActive(true);
         this.gameObject.transform.position = position;
         this.gameObject.SetActive(true);
         onSpawnFrame = true;
@@ -68,6 +74,7 @@ public class PlayerCharacter : MonoBehaviour
     public void Despawn()
     {
         DisableCarEnter();
+        mainCamera.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
     }
 
