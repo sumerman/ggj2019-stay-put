@@ -55,12 +55,12 @@ public class Car : MonoBehaviour
         }
         if (stopped && !pc.gameObject.activeSelf)
         {
-            notifications.SetText("Press \"space\" to leave the car");
+            if(notifications!=null) notifications.SetText("Press \"space\" to leave the car");
 
             if (Input.GetKeyDown("space"))
             {
                 SpawnPlayer();
-                notifications.SetText("");
+                if (notifications != null) notifications.SetText("");
             }
         }
     }
