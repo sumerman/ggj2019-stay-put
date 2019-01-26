@@ -8,7 +8,10 @@ TagManager:
   - Waypoint
   - Pickup
   - UI
-  - FadeAnimations  - VehicleCamera  layers:
+  - VehicleCamera
+  - FadeAnimations
+  
+  layers:
   - Default
   - TransparentFX
   - Ignore Raycast
