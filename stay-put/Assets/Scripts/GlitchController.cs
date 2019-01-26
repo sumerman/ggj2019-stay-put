@@ -62,7 +62,10 @@ public class GlitchController : MonoBehaviour
             analogGlitch.scanLineJitter = x * 0.7f;
             glitchSounds.sineIntensity = x * 0.5f;
         });
-        mutators.Add((float x) => { analogGlitch.verticalJump = x * 0.4f; });
+        mutators.Add((float x) => { 
+            analogGlitch.verticalJump = x * 0.4f;
+            glitchSounds.wobbleIntensity = Mathf.Clamp01(x - 0.1f);
+        });
     }
 
     // Update is called once per frame
