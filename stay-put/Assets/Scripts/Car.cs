@@ -97,9 +97,10 @@ public class Car : MonoBehaviour
     public void onPlayerEntered()
     {
         mainCamera.SetTarget(this.gameObject);
-        if (targetWP.pickup)
+        Stopwaypoint swp = targetWP as Stopwaypoint;
+        if (swp && swp.pickup)
         {
-            inventory += targetWP.pickup.stats;
+            inventory += swp.pickup.stats;
         }
         targetWP.onVehicleEnter();
     }
