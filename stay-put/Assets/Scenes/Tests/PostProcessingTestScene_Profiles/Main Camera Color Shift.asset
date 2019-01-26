@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: Main Camera Profile
+  m_Name: Main Camera Color Shift
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 114717070807914388}
   - {fileID: 114133412855940680}
-  - {fileID: 114146270576147382}
-  - {fileID: 114888687181628770}
 --- !u!114 &114133412855940680
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -82,7 +80,7 @@ MonoBehaviour:
     value: -56
   saturation:
     overrideState: 1
-    value: 87
+    value: 100
   brightness:
     overrideState: 0
     value: 0
@@ -120,11 +118,11 @@ MonoBehaviour:
     overrideState: 0
     value: 100
   lift:
-    overrideState: 1
+    overrideState: 0
     value: {x: 0.8170692, y: 1, z: 0.8916507, w: 0}
   gamma:
     overrideState: 1
-    value: {x: 1, y: 0.7255642, z: 0.6642707, w: -0.07398273}
+    value: {x: 1, y: 0.81027704, z: 0.7797092, w: -0.07398273}
   gain:
     overrideState: 1
     value: {x: 1, y: 0.76680785, z: 0.8609695, w: 0.04932183}
@@ -1328,40 +1326,6 @@ MonoBehaviour:
       - 0.5
       - 0.5
       - 0.5
---- !u!114 &114146270576147382
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
-  m_Name: LensDistortion
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  intensity:
-    overrideState: 1
-    value: 56
-  intensityX:
-    overrideState: 0
-    value: 1
-  intensityY:
-    overrideState: 0
-    value: 1
-  centerX:
-    overrideState: 1
-    value: 0.1
-  centerY:
-    overrideState: 1
-    value: -0.12
-  scale:
-    overrideState: 0
-    value: 1
 --- !u!114 &114717070807914388
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1384,54 +1348,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.863
-  fastMode:
-    overrideState: 0
-    value: 0
---- !u!114 &114888687181628770
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
-  m_Name: Bloom
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
     value: 1
-  intensity:
-    overrideState: 1
-    value: 5.54
-  threshold:
-    overrideState: 0
-    value: 1
-  softKnee:
-    overrideState: 1
-    value: 0.225
-  clamp:
-    overrideState: 0
-    value: 65472
-  diffusion:
-    overrideState: 0
-    value: 7
-  anamorphicRatio:
-    overrideState: 0
-    value: 0
-  color:
-    overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
   fastMode:
-    overrideState: 0
-    value: 0
-  dirtTexture:
-    overrideState: 0
-    value: {fileID: 0}
-    defaultState: 1
-  dirtIntensity:
     overrideState: 0
     value: 0

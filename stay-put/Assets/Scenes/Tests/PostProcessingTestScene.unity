@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 196436711}
   - component: {fileID: 196436710}
   m_Layer: 0
-  m_Name: DangerCube
+  m_Name: OriginCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196436709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5, y: 0.79, z: 5.24}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -387,8 +387,10 @@ GameObject:
   - component: {fileID: 1733348099}
   - component: {fileID: 1733348103}
   - component: {fileID: 1733348102}
-  - component: {fileID: 1733348105}
+  - component: {fileID: 1733348108}
   - component: {fileID: 1733348104}
+  - component: {fileID: 1733348105}
+  - component: {fileID: 1733348106}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -475,7 +477,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: 7b2f274ee7e8a415d934178f5f9f9ea1, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   priority: 0
 --- !u!114 &1733348103
 MonoBehaviour:
@@ -563,11 +565,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870b9a8f0f82f4f56800cc427bcd1025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scanLineJitter: 0.058
+  _scanLineJitter: 0
   _verticalJump: 0
   _horizontalShake: 0
   _colorDrift: 0
   _shader: {fileID: 4800000, guid: da33272284ea24f208f36998880990be, type: 3}
+--- !u!114 &1733348106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733348098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc73540ff2b5c42658442788faa26b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1797416028}
+  origin: {fileID: 196436713}
+  safeRadius: 2
+  maxRadius: 8
+--- !u!114 &1733348108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733348098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 3de5b534ec28d4b2c8497574de75d0f3, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 0
+  priority: 0
 --- !u!1 &1768436958
 GameObject:
   m_ObjectHideFlags: 0
