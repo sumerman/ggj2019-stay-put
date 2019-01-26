@@ -16,13 +16,16 @@ public class Car : MonoBehaviour
     private ScreenNotifications notifications;
     public MotorSoundController motorSound;
 
+    private float maxSpeed;
     private bool stopped;
+    private bool playStartSoundOnlyOnce = true;
 
     private PickupStats inventory;
 
     // Start is called before the first frame update
     void Start()
     {
+        maxSpeed = speed;
         rbody = gameObject.GetComponent<Rigidbody>();
         mainCamera = GameObject.FindGameObjectWithTag("VehicleCamera").GetComponent<DriftCamera>();
 
@@ -33,6 +36,8 @@ public class Car : MonoBehaviour
         pc.Despawn();
 
         inventory = GetComponentInChildren<PickupStats>();
+
+        motorSound.DriveSound();
     }
 
     // Update is called once per frame
@@ -40,10 +45,11 @@ public class Car : MonoBehaviour
     {
         if (targetWP != null && stopped)
         {
-            if (targetWP.allowDriveOn())
+            if (targetWP.allowDriveOn() && playStartSoundOnlyOnce)
             {
                 targetWP = targetWP.getNextWaypoint();
-                start();
+                StartCoroutine(start());
+                playStartSoundOnlyOnce = false;
             }
         }
         if (targetWP != null && !stopped)
@@ -90,25 +96,35 @@ public class Car : MonoBehaviour
 
     private void moveTowardsNextWaypoint()
     {
+        speed = Mathf.Min(maxSpeed, speed + 0.1f);
         Vector3 spatialDifference = targetWP.gameObject.transform.position - this.rbody.position;
         Quaternion differenceDirection = Quaternion.LookRotation(spatialDifference,transform.up);
         rbody.rotation = (Quaternion.RotateTowards(rbody.rotation, differenceDirection, rotationSpeed*Time.deltaTime));
         rbody.MovePosition(rbody.position + transform.forward * speed * Time.deltaTime);
     }
 
-    private void stop()
+    private IEnumerator stop()
     {
+        speed = 0;
         stopped = true;
-
+        Debug.Log("a");
+        motorSound.StopSound();
+        Debug.Log("b");
+        yield return new WaitForSeconds(motorSound.source.clip.length);
+        Debug.Log("c");
     }
 
-    private void start()
+    private IEnumerator start()
     {
+        motorSound.StartSound();
+        yield return new WaitForSeconds(motorSound.source.clip.length);
+        motorSound.DriveSound();
         stopped = false;
     }
 
     public void onPlayerEntered()
     {
+        playStartSoundOnlyOnce = true;
         Debug.Log("Hello");
         mainCamera.SwitchTo();
         Stopwaypoint swp = targetWP as Stopwaypoint;
@@ -128,8 +144,10 @@ public class Car : MonoBehaviour
         }
         else
         {
+            Debug.Log("z");
             inventory.handleWaypoint();
-            stop();
+            Debug.Log("y");
+            StartCoroutine(stop());
         }
     }
 }

@@ -319,6 +319,10 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 546281429, guid: b7117cbb7073b2d468939ac2ab0983c8, type: 3}
+      propertyPath: motorSound
+      value: 
+      objectReference: {fileID: 600310370}
     - target: {fileID: 395634892273634424, guid: b7117cbb7073b2d468939ac2ab0983c8,
         type: 3}
       propertyPath: m_RootOrder
@@ -1264,8 +1268,9 @@ GameObject:
   m_Component:
   - component: {fileID: 600310368}
   - component: {fileID: 600310369}
+  - component: {fileID: 600310370}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MotorSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1296,14 +1301,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 52
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1381,6 +1386,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &600310370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600310367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c50afd11c34a54787af70a43a0aaf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 600310369}
+  startSound: {fileID: 8300000, guid: a26259132622d4952b57e78dc929554f, type: 3}
+  driveSound: {fileID: 8300000, guid: be6294c75f9c6469a970a890fb90c1d0, type: 3}
+  stopSound: {fileID: 8300000, guid: 0ae1875a246374192aa4106b47532144, type: 3}
 --- !u!4 &643190803 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4960347456279866, guid: 9ca2feb168e9de647a6b57a849d7616a,
@@ -1614,7 +1635,8 @@ PrefabInstance:
       propertyPath: radioSource
       value: 
       objectReference: {fileID: 1077696828}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5387306142243019925, guid: 856356faf8c204d08aff49e1b379cc5b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 856356faf8c204d08aff49e1b379cc5b, type: 3}
 --- !u!1 &881883007 stripped
 GameObject:

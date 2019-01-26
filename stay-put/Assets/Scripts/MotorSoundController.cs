@@ -36,6 +36,8 @@ public class MotorSoundController : MonoBehaviour
 
     public void DriveSound()
     {
-
+        source.loop = true;
+        source.clip = driveSound;
+        source.Play();
     }
 }
