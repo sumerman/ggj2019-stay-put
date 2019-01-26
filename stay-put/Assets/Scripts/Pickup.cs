@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     public PlayerCharacter player;
-    public Application.PickupStats stats;
+    public PickupStats stats;
     // Start is called before the first frame update
     void Start()
     {

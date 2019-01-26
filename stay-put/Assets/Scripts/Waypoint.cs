@@ -4,6 +4,8 @@ public abstract class Waypoint : MonoBehaviour
 {
     public Waypoint nextWaypoint;
 
+    public Pickup pickup;
+
     public virtual Waypoint getNextWaypoint()
     {
         return nextWaypoint;

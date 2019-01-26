@@ -15,6 +15,8 @@ public class Car : MonoBehaviour
 
     private bool stopped;
 
+    private PickupStats inventory;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,8 @@ public class Car : MonoBehaviour
         pc.car = this;
         pc.mainCamera = mainCamera;
         pc.Despawn();
+
+        inventory = GetComponentInChildren<PickupStats>();
     }
 
     // Update is called once per frame
@@ -86,6 +90,7 @@ public class Car : MonoBehaviour
     public void onPlayerEntered()
     {
         mainCamera.SetTarget(this.gameObject);
+        inventory += targetWP.pickup.stats;
         targetWP.onVehicleEnter();
     }
 
