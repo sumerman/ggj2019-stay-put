@@ -4,24 +4,67 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    public float walkingSpeed;
+    [HideInInspector]
     public Car car;
+    public LookAt mainCamera;
 
-    private bool waitAFrame = true;
+    private Rigidbody rbody;
+    private bool onSpawnFrame = true;
+    private bool canEnterCar = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rbody = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        Debug.Log("Hello");
-        if (Input.GetKeyDown("e"))
+        float xTrans = Input.GetAxis("Vertical") * walkingSpeed;
+        float zTrans = -Input.GetAxis("Horizontal") * walkingSpeed;
+        rbody.MovePosition(rbody.position + new Vector3(xTrans, 0, zTrans));
+        if (Input.GetKeyDown("e") && canEnterCar)
         {
             car.onPlayerEntered();
-            this.gameObject.SetActive(false);
+            Despawn();
         }
+    }
+
+    void LateUpdate()
+    {
+        onSpawnFrame = false;
+    }
+
+    public bool IsOnSpawnFrame()
+    {
+        return onSpawnFrame;
+    }
+
+    public void Spawn(Vector3 position)
+    {
+        this.gameObject.transform.position = position;
+        mainCamera.SetTarget(this.gameObject);
+        this.gameObject.SetActive(true);
+        onSpawnFrame = true;
+    }
+
+    public void Despawn()
+    {
+        DisableCarEnter();
+        this.gameObject.SetActive(false);
+    }
+
+    public void EnableCarEnter()
+    {
+        Debug.Log("good to enter!");
+        canEnterCar = true;
+    }
+
+    public void DisableCarEnter()
+    {
+        Debug.Log("No more entering!");
+        canEnterCar = false;
     }
 }

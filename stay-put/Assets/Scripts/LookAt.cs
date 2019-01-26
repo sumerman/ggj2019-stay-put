@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LookAt : MonoBehaviour
 {
-    public Transform target;
+    [SerializeField]
+    private Transform target;
     private Vector3 relativePosition;
     // Start is called before the first frame update
     void Start()
@@ -17,5 +18,10 @@ public class LookAt : MonoBehaviour
     {
         transform.position = target.position + relativePosition;
         transform.LookAt(target);
+    }
+
+    public void SetTarget(GameObject newTarget)
+    {
+        target = newTarget.transform;
     }
 }

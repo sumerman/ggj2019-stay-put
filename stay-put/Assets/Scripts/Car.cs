@@ -5,9 +5,11 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     public float speed;
+    public Vector3 spawnOffset;
 
     public Waypoint targetWP;
     public PlayerCharacter pc;
+    private LookAt mainCamera;
     //    private Waypoint lastWP;
 
     private bool stopped;
@@ -15,8 +17,10 @@ public class Car : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<LookAt>();
         pc.car = this;
-        pc.gameObject.SetActive(false);
+        pc.mainCamera = mainCamera;
+        pc.Despawn();
     }
 
     // Update is called once per frame
@@ -45,10 +49,13 @@ public class Car : MonoBehaviour
         }
         if (stopped && !pc.gameObject.activeSelf && Input.GetKeyDown("space"))
         {
-            Debug.Log("SPACE");
-            pc.gameObject.SetActive(true);
-            //pc.transform.position = this.transform.position;
+            SpawnPlayer();
         }
+    }
+
+    private void SpawnPlayer()
+    {
+        pc.Spawn(this.gameObject.transform.position + spawnOffset);
     }
 
     private void moveTowardsNextWaypoint()
@@ -69,6 +76,7 @@ public class Car : MonoBehaviour
 
     public void onPlayerEntered()
     {
+        mainCamera.SetTarget(this.gameObject);
         targetWP.onVehicleEnter();
     }
 
