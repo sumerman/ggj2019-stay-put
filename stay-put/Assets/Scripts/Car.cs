@@ -65,13 +65,23 @@ public class Car : MonoBehaviour
 
             if (Input.GetKeyDown("space"))
             {
-                SpawnPlayer();
+                GameObject fadeAnimatior = GameObject.FindGameObjectWithTag("FadeAnimations");
+                if (fadeAnimatior)
+                {
+                    CameraChanger changer = fadeAnimatior.GetComponent<CameraChanger>();
+                    changer.GetOut();
+                }
+                else
+                {
+                    SpawnPlayer();
+                }
+
                 if (notifications != null) notifications.SetText("");
             }
         }
     }
 
-    private void SpawnPlayer()
+    public void SpawnPlayer()
     {
         pc.Spawn(this.gameObject.transform.position + spawnOffset);
     }
