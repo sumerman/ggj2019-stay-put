@@ -5,11 +5,13 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     public float speed;
+    public float rotationSpeed;
     public Vector3 spawnOffset;
 
     public Waypoint targetWP;
     public PlayerCharacter pc;
     private LookAt mainCamera;
+    private Rigidbody rbody;
     //    private Waypoint lastWP;
 
     private bool stopped;
@@ -17,6 +19,7 @@ public class Car : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rbody = gameObject.GetComponent<Rigidbody>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<LookAt>();
         pc.car = this;
         pc.mainCamera = mainCamera;
@@ -47,6 +50,7 @@ public class Car : MonoBehaviour
                 targetWP = targetWP.getNextWaypoint();
             }*/
         }
+       // Debug.Log(stopped);
         if (stopped && !pc.gameObject.activeSelf && Input.GetKeyDown("space"))
         {
             SpawnPlayer();
@@ -60,12 +64,15 @@ public class Car : MonoBehaviour
 
     private void moveTowardsNextWaypoint()
     {
-        Vector3 stopPosition = targetWP.transform.position;
-        GetComponent<Rigidbody>().position = Vector3.MoveTowards(GetComponent<Rigidbody>().position, stopPosition, speed);
+        Vector3 spatialDifference = targetWP.gameObject.transform.position - this.rbody.position;
+        Quaternion differenceDirection = Quaternion.LookRotation(spatialDifference,transform.up);
+        rbody.rotation = (Quaternion.RotateTowards(rbody.rotation, differenceDirection, rotationSpeed*Time.deltaTime));
+        rbody.MovePosition(rbody.position + transform.forward * speed * Time.deltaTime);
     }
 
     private void stop()
     {
+        Debug.Log("STOP");
         stopped = true;
     }
 
@@ -82,6 +89,7 @@ public class Car : MonoBehaviour
 
     public void handleWaypoint(Waypoint wp)
     {
+        Debug.Log(wp.allowDriveOn());
         if(wp.allowDriveOn())
         {
             targetWP = wp.getNextWaypoint();

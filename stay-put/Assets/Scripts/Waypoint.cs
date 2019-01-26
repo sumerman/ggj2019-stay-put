@@ -11,7 +11,6 @@ public abstract class Waypoint : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        
         Car car = other.gameObject.GetComponent<Car>();
         if (car == null) return;
         Debug.Log("Trigger entered");
