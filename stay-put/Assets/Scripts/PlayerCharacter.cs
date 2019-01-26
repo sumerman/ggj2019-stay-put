@@ -30,9 +30,24 @@ public class PlayerCharacter : MonoBehaviour
         DistanceDependentActions();
         if (Input.GetKeyDown("space") && canEnterCar)
         {
-            car.onPlayerEntered();
-            Despawn();
+            GameObject fadeAnimatior = GameObject.FindGameObjectWithTag("FadeAnimations");
+            if (fadeAnimatior)
+            {
+                FadeAnimationPlayer changer = fadeAnimatior.GetComponent<FadeAnimationPlayer>();
+                changer.FadeComplete.AddListener(EnterCar);
+                changer.StartFading();
+            }
+            else
+            {
+                EnterCar();
+            }
         }
+    }
+
+    public void EnterCar()
+    {
+        car.onPlayerEntered();
+        Despawn();
     }
 
     private void DistanceDependentActions()
