@@ -17,16 +17,22 @@ public class Car : MonoBehaviour
 
     private bool stopped;
 
+    private PickupStats inventory;
+
     // Start is called before the first frame update
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<LookAt>();
-        notifications =
-                GameObject.FindGameObjectWithTag("UI").GetComponent<ScreenNotifications>();
+
+        GameObject ui = GameObject.FindGameObjectWithTag("UI");
+        if (ui) notifications = ui.GetComponent<ScreenNotifications>();
+
         pc.car = this;
         pc.mainCamera = mainCamera;
         pc.Despawn();
+
+        inventory = GetComponentInChildren<PickupStats>();
     }
 
     // Update is called once per frame
@@ -91,6 +97,11 @@ public class Car : MonoBehaviour
     public void onPlayerEntered()
     {
         mainCamera.SetTarget(this.gameObject);
+        Stopwaypoint swp = targetWP as Stopwaypoint;
+        if (swp && swp.pickup)
+        {
+            inventory += swp.pickup.stats;
+        }
         targetWP.onVehicleEnter();
     }
 
@@ -102,6 +113,7 @@ public class Car : MonoBehaviour
         }
         else
         {
+            inventory.handleWaypoint();
             stop();
         }
     }

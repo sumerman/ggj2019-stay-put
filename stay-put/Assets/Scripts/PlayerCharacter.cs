@@ -10,6 +10,7 @@ public class PlayerCharacter : MonoBehaviour
     [HideInInspector]
     public LookAt mainCamera;
 
+    private ScreenNotifications notifications;
     private Rigidbody rbody;
     private bool onSpawnFrame = true;
     private bool canEnterCar = false;
@@ -18,6 +19,8 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody>();
+        GameObject ui = GameObject.FindGameObjectWithTag("UI");
+        if (ui) notifications = ui.GetComponent<ScreenNotifications>();
     }
 
     // Update is called once per frame
@@ -71,17 +74,14 @@ public class PlayerCharacter : MonoBehaviour
     public void EnableCarEnter()
     {
         Debug.Log("good to enter!");
+        if (notifications) notifications.SetText("Press \"space\" to enter the car");
         canEnterCar = true;
     }
 
     public void DisableCarEnter()
     {
         Debug.Log("No more entering!");
+        if (notifications) notifications.SetText("");
         canEnterCar = false;
-    }
-
-    public void onPickedUpObject()
-    {
-        Debug.Log("picked up");
     }
 }

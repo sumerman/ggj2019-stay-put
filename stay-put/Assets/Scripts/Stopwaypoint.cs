@@ -11,6 +11,8 @@ public class Stopwaypoint : Waypoint
     private bool doonce = true;
     private bool driveOn = false;
 
+    public Pickup pickup;
+
     void FixedUpdate()
     {
         /*if (countTime)

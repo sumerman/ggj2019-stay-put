@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PickupTrigger : MonoBehaviour
 {
+    [HideInInspector]
     public bool playerIsInArea;
     private ScreenNotifications notifications;
     // Start is called before the first frame update
     void Start()
     {
         playerIsInArea = false;
-        notifications =
-            GameObject.FindGameObjectWithTag("UI").GetComponent<ScreenNotifications>();
+        GameObject ui = GameObject.FindGameObjectWithTag("UI");
+        if (ui) notifications = ui.GetComponent<ScreenNotifications>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,12 +22,12 @@ public class PickupTrigger : MonoBehaviour
 
         Debug.Log("entered");
         playerIsInArea = true;
-        notifications.SetText("Press \"e\" to pick up");
+        if (notifications) notifications.SetText("Press \"e\" to pick up");
     }
 
     private void OnTriggerExit(Collider other)
     {
         playerIsInArea = false;
-        notifications.SetText("");
+        if (notifications) notifications.SetText("");
     }
 }

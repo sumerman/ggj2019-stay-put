@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    public PlayerCharacter player;
-    public Application.PickupStats stats;
+    public PickupStats stats;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +16,18 @@ public class Pickup : MonoBehaviour
     {
         if (Input.GetKeyDown("e") && GetComponentInChildren<PickupTrigger>().playerIsInArea)
         {
-            player.onPickedUpObject();
+            Debug.Log("picked up");
             this.gameObject.SetActive(false);
-            ScreenNotifications notifications =
-                GameObject.FindGameObjectWithTag("UI").GetComponent<ScreenNotifications>();
-            if(notifications)
+
+            GameObject ui = GameObject.FindGameObjectWithTag("UI");
+            if (ui)
             {
-                notifications.SetText("");
+                ScreenNotifications notifications =
+                    GameObject.FindGameObjectWithTag("UI").GetComponent<ScreenNotifications>();
+                if (notifications)
+                {
+                    notifications.SetText("");
+                }
             }
         }
     }

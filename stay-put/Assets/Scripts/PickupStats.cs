@@ -1,16 +1,26 @@
 ﻿using System;
-namespace Application
+using UnityEngine;
+
+public class PickupStats : MonoBehaviour
 {
-    public enum PickupType
+    const int decreaseDelta = 5;
+
+    public int fuel;
+    public int food;
+    public int sparePart;
+
+    public static PickupStats operator +(PickupStats ps1, PickupStats ps2)
     {
-        Fuel = 0,
-        Food,
-        SparePart
+        ps1.fuel += ps2.fuel;
+        ps1.food += ps2.food;
+        ps1.sparePart += ps2.sparePart;
+        return ps1;
     }
 
-    public struct PickupStats
+    public void handleWaypoint()
     {
-        public PickupType type;
-        public int amount;
+        fuel = Math.Max(fuel - decreaseDelta, 0);
+        food = Math.Max(food - decreaseDelta, 0);
+        sparePart = Math.Max(sparePart - decreaseDelta, 0);
     }
 }
