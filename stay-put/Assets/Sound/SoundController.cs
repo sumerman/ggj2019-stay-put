@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using GoldenAudio;
 
@@ -12,6 +13,8 @@ public class SoundController : MonoBehaviour
     private double wobbleStart;
     private bool wobblingNow;
 
+    private Queue<int> sinesQueue;
+
     public AudioSource zztPlayer;
     public AudioClip zztSound;
     public SineSynthPoly synth;
@@ -24,6 +27,7 @@ public class SoundController : MonoBehaviour
     public float sineIntensity = 0.0f;
 
     private void Start() {
+        sinesQueue = new Queue<int>();
         zztPlayer.clip = zztSound;
         zztPlayer.volume = 0.2f;
     }
@@ -60,11 +64,21 @@ public class SoundController : MonoBehaviour
         synth.SetFreq(wobbleVoice, wobbleFreq + wobbleLFOAmount * Math.Sin(wobbleLFOFreq * Time.time));
     }
 
+    private void ManageSines() {
+        if (sinesQueue.Count < sineIntensity * 100) {
+            int voice = synth.NewSine(UnityEngine.Random.value * 800 + 200, 0.03, 2);
+            sinesQueue.Enqueue(voice);
+        }
 
-    // Get spookier with Sine wave
-    public void SinePad(int number) {
-        for (int i = 0; i < number; i++) {
-            synth.NewSine(UnityEngine.Random.value * 800 + 200, 0.03, 2);
+        if (sinesQueue.Count > (sineIntensity + 0.01f) * 100) {
+            int voice = sinesQueue.Dequeue();
+            synth.ReleaseVoice(voice, 0.05f);
+        }
+
+        if (sineIntensity == 0f) {
+            while(sinesQueue.Count > 0) {
+                synth.ReleaseVoice(sinesQueue.Dequeue(), 0.01f);
+            }
         }
     }
 
@@ -81,9 +95,8 @@ public class SoundController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-
         ManageWobbles();
-
+        ManageSines();
         ManageZztGlitch();
     }
 }
