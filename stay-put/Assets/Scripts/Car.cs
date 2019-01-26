@@ -69,7 +69,7 @@ public class Car : MonoBehaviour
 
     public void onPlayerEntered()
     {
-        
+        targetWP.onVehicleEnter();
     }
 
     public void handleWaypoint(Waypoint wp)
