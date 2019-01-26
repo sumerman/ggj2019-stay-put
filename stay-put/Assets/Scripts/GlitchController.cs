@@ -7,6 +7,7 @@ using Kino;
 [RequireComponent(typeof(PostProcessVolume))]
 [RequireComponent(typeof(DigitalGlitch))]
 [RequireComponent(typeof(AnalogGlitch))]
+[RequireComponent(typeof(SoundController))]
 [RequireComponent(typeof(Camera))]
 
 public class GlitchController : MonoBehaviour
@@ -47,12 +48,20 @@ public class GlitchController : MonoBehaviour
         {
             mutators.Add((float x) => { v.weight = x; });
         }
+
+        SoundController glitchSounds = this.GetComponent<SoundController>();
         
         DigitalGlitch digitalGlitch = this.GetComponent<DigitalGlitch>();
-        mutators.Add((float x) => { digitalGlitch.intensity = x * 0.8f; });
+        mutators.Add((float x) => {
+             digitalGlitch.intensity = x * 0.8f;
+             glitchSounds.zztItensity = x * 0.9f;
+        });
 
         AnalogGlitch analogGlitch = this.GetComponent<AnalogGlitch>();
-        mutators.Add((float x) => { analogGlitch.scanLineJitter = x * 0.3f; });
+        mutators.Add((float x) => { 
+            analogGlitch.scanLineJitter = x * 0.7f;
+            glitchSounds.sineIntensity = x * 0.5f;
+        });
         mutators.Add((float x) => { analogGlitch.verticalJump = x * 0.4f; });
     }
 

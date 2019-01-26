@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using GoldenAudio;
 
@@ -12,17 +13,21 @@ public class SoundController : MonoBehaviour
     private double wobbleStart;
     private bool wobblingNow;
 
+    private Queue<int> sinesQueue;
+
     public AudioSource zztPlayer;
     public AudioClip zztSound;
-    private float zztDensity;
-    private float zztEnd;
-    private bool zztImmediately;
-
     public SineSynthPoly synth;
-    public bool TestMode;
 
+    [Range(0f, 1f)]
+    public float zztItensity = 0.0f;
+    [Range(0f, 1f)]
+    public float wobbleIntensity = 0.0f;
+    [Range(0f, 1f)]
+    public float sineIntensity = 0.0f;
 
     private void Start() {
+        sinesQueue = new Queue<int>();
         zztPlayer.clip = zztSound;
         zztPlayer.volume = 0.2f;
     }
@@ -59,11 +64,21 @@ public class SoundController : MonoBehaviour
         synth.SetFreq(wobbleVoice, wobbleFreq + wobbleLFOAmount * Math.Sin(wobbleLFOFreq * Time.time));
     }
 
+    private void ManageSines() {
+        if (sinesQueue.Count < sineIntensity * 100) {
+            int voice = synth.NewSine(UnityEngine.Random.value * 800 + 200, 0.03, 2);
+            sinesQueue.Enqueue(voice);
+        }
 
-    // Get spookier with Sine wave
-    public void SinePad(int number) {
-        for (int i = 0; i < number; i++) {
-            synth.NewSine(UnityEngine.Random.value * 800 + 200, 0.03, 2);
+        if (sinesQueue.Count > (sineIntensity + 0.01f) * 100) {
+            int voice = sinesQueue.Dequeue();
+            synth.ReleaseVoice(voice, 0.05f);
+        }
+
+        if (sineIntensity == 0f) {
+            while(sinesQueue.Count > 0) {
+                synth.ReleaseVoice(sinesQueue.Dequeue(), 0.01f);
+            }
         }
     }
 
@@ -71,48 +86,17 @@ public class SoundController : MonoBehaviour
         synth.ReleaseAll(Release: 2.5);
     }
 
-
-    // Zzt Glitch
-    public void ZztGlitch(float Density, float Duration) {
-        zztDensity = Density;
-        zztEnd = Time.time + Duration;
-        zztImmediately = true;
-    }
-
     private void ManageZztGlitch() {
-        if (zztImmediately || zztEnd > Time.time && UnityEngine.Random.value < zztDensity) {
+        if (UnityEngine.Random.value < zztItensity) {
             zztPlayer.Play();
-            zztImmediately = false;
         }
     }
 
 
     // Update is called once per frame
     void Update() {
-        if (TestMode) {
-            if (Input.GetKeyDown(KeyCode.A)) {
-                SinePad(3);
-            }
-            if (Input.GetKeyDown(KeyCode.Y)) {
-                ReleaseAll();
-            }
-            if (Input.GetKeyDown(KeyCode.W)) {
-                ZztGlitch(0.75f, 1);
-            }
-            if (Input.GetKeyDown(KeyCode.S)) {
-                ZztGlitch(0.07f, 3);
-            }
-            if (Input.GetKeyDown(KeyCode.D)) {
-                Wobble(1, Intensity: 1);
-            }
-            if (Input.GetKeyDown(KeyCode.E)) {
-                Wobble(1, Intensity: 10);
-            }
-
-        }
-
         ManageWobbles();
-
+        ManageSines();
         ManageZztGlitch();
     }
 }
