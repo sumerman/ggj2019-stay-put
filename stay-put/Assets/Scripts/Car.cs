@@ -23,13 +23,12 @@ public class Car : MonoBehaviour
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody>();
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<LookAt>();
+        mainCamera = GameObject.FindGameObjectWithTag("VehicleCamera").GetComponent<LookAt>();
 
         GameObject ui = GameObject.FindGameObjectWithTag("UI");
         if (ui) notifications = ui.GetComponent<ScreenNotifications>();
 
         pc.car = this;
-        pc.mainCamera = mainCamera;
         pc.Despawn();
 
         inventory = GetComponentInChildren<PickupStats>();
@@ -84,6 +83,7 @@ public class Car : MonoBehaviour
 
     public void SpawnPlayer()
     {
+        mainCamera.gameObject.SetActive(false);
         pc.Spawn(this.gameObject.transform.position + spawnOffset);
     }
 
@@ -107,7 +107,7 @@ public class Car : MonoBehaviour
 
     public void onPlayerEntered()
     {
-        mainCamera.SetTarget(this.gameObject);
+        mainCamera.gameObject.SetActive(true);
         Stopwaypoint swp = targetWP as Stopwaypoint;
         if (swp && swp.pickup)
         {
