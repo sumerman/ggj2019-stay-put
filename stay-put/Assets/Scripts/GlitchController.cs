@@ -15,7 +15,7 @@ public class GlitchController : MonoBehaviour
     public Transform player;
     public Transform origin;
 
-    public float safeRadius; // TODO
+    public float safeRadius;
     public float maxRadius;
 
     private List<PropertyMutator> mutators;
@@ -42,7 +42,12 @@ public class GlitchController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float d = Mathf.Clamp((Vector3.Distance(player.position, origin.position) - safeRadius) / maxRadius, 0.0f, 1.0f);
+        float d = 0.0f;
+
+        if(player.gameObject.activeSelf) {
+            d = Mathf.Clamp((Vector3.Distance(player.position, origin.position) - safeRadius) / maxRadius, 0.0f, 1.0f);
+        }
+
         foreach(PropertyMutator m in mutators) {
            m.Invoke(d); 
         }
