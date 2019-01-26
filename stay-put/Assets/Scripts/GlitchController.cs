@@ -27,10 +27,9 @@ public class GlitchController : MonoBehaviour
     }
 
     public Transform player;
-    public Transform origin;
+    public SphereCollider boundary;
 
     public float safeRadius = 1.0f;
-    public float maxRadius = 10.0f;
     public float deltaSpawn = 0.1f;
     public float minLength = 0.6f;
 
@@ -75,8 +74,12 @@ public class GlitchController : MonoBehaviour
 
         if (player.gameObject.activeSelf) 
         {
-            var dist = Vector3.Distance(player.position, origin.position);
-            totalIntensity = Mathf.Clamp01((dist - safeRadius) / maxRadius);
+            var dist = Vector3.Distance(player.position, boundary.transform.position);
+            if (dist > boundary.radius) 
+            {
+                UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.AccessViolation);
+            }
+            totalIntensity = Mathf.Clamp01((dist - safeRadius) / boundary.radius);
         }
 
         while (true)
