@@ -52,7 +52,7 @@ public class GlitchController : MonoBehaviour
         mutators.Add((float x) => { digitalGlitch.intensity = x * 0.8f; });
 
         AnalogGlitch analogGlitch = this.GetComponent<AnalogGlitch>();
-        mutators.Add((float x) => { analogGlitch.scanLineJitter = x * 0.3f; });
+        mutators.Add((float x) => { analogGlitch.scanLineJitter = x * 0.5f; });
         mutators.Add((float x) => { analogGlitch.verticalJump = x * 0.4f; });
     }
 

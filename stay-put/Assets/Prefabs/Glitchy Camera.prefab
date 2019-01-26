@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4222974836192758655}
   - component: {fileID: 4222974836192758652}
   m_Layer: 8
-  m_Name: Main Camera
+  m_Name: Glitchy Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,3 +229,5 @@ MonoBehaviour:
   origin: {fileID: 0}
   safeRadius: 2
   maxRadius: 8
+  deltaSpawn: 0.1
+  minLength: 0.6

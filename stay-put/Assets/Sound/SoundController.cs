@@ -14,13 +14,14 @@ public class SoundController : MonoBehaviour
 
     public AudioSource zztPlayer;
     public AudioClip zztSound;
-    private float zztDensity;
-    private float zztEnd;
-    private bool zztImmediately;
-
     public SineSynthPoly synth;
-    public bool TestMode;
 
+    [Range(0f, 1f)]
+    public float zztItensity = 0.0f;
+    [Range(0f, 1f)]
+    public float wobbleIntensity = 0.0f;
+    [Range(0f, 1f)]
+    public float sineIntensity = 0.0f;
 
     private void Start() {
         zztPlayer.clip = zztSound;
@@ -71,45 +72,15 @@ public class SoundController : MonoBehaviour
         synth.ReleaseAll(Release: 2.5);
     }
 
-
-    // Zzt Glitch
-    public void ZztGlitch(float Density, float Duration) {
-        zztDensity = Density;
-        zztEnd = Time.time + Duration;
-        zztImmediately = true;
-    }
-
     private void ManageZztGlitch() {
-        if (zztImmediately || zztEnd > Time.time && UnityEngine.Random.value < zztDensity) {
+        if (UnityEngine.Random.value < zztItensity) {
             zztPlayer.Play();
-            zztImmediately = false;
         }
     }
 
 
     // Update is called once per frame
     void Update() {
-        if (TestMode) {
-            if (Input.GetKeyDown(KeyCode.A)) {
-                SinePad(3);
-            }
-            if (Input.GetKeyDown(KeyCode.Y)) {
-                ReleaseAll();
-            }
-            if (Input.GetKeyDown(KeyCode.W)) {
-                ZztGlitch(0.75f, 1);
-            }
-            if (Input.GetKeyDown(KeyCode.S)) {
-                ZztGlitch(0.07f, 3);
-            }
-            if (Input.GetKeyDown(KeyCode.D)) {
-                Wobble(1, Intensity: 1);
-            }
-            if (Input.GetKeyDown(KeyCode.E)) {
-                Wobble(1, Intensity: 10);
-            }
-
-        }
 
         ManageWobbles();
 
