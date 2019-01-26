@@ -11,17 +11,22 @@ public class PlayerCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Hello");
+        //Debug.Log("Hello");
         if (Input.GetKeyDown("e"))
         {
             car.onPlayerEntered();
             this.gameObject.SetActive(false);
         }
+    }
+
+    public void onPickedUpObject()
+    {
+        Debug.Log("picked up");
     }
 }
