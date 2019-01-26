@@ -23,16 +23,25 @@ public class PlayerCharacter : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float xTrans = Input.GetAxis("Vertical") * walkingSpeed;
-        float zTrans = -Input.GetAxis("Horizontal") * walkingSpeed;
-        rbody.MovePosition(rbody.position + new Vector3(xTrans, 0, zTrans));
-        if (Input.GetKeyDown("e") && canEnterCar)
-        //Debug.Log("Hello");
-        if (Input.GetKeyDown("e"))
+        Move();
+        DistanceDependentActions();
+        if (Input.GetKeyDown("space") && canEnterCar)
         {
             car.onPlayerEntered();
             Despawn();
         }
+    }
+
+    private void DistanceDependentActions()
+    {
+        Debug.Log(Vector3.Distance(gameObject.transform.position, car.gameObject.transform.position));
+    }
+
+    private void Move()
+    {
+        float xTrans = Input.GetAxis("Vertical") * walkingSpeed;
+        float zTrans = -Input.GetAxis("Horizontal") * walkingSpeed;
+        rbody.MovePosition(rbody.position + new Vector3(xTrans, 0, zTrans));
     }
 
     void LateUpdate()
