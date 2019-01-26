@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StopPoint
   - Waypoint
+  - Pickup
   layers:
   - Default
   - TransparentFX
