@@ -67,8 +67,9 @@ public class Car : MonoBehaviour
                 GameObject fadeAnimatior = GameObject.FindGameObjectWithTag("FadeAnimations");
                 if (fadeAnimatior)
                 {
-                    CameraChanger changer = fadeAnimatior.GetComponent<CameraChanger>();
-                    changer.GetOut();
+                    FadeAnimationPlayer changer = fadeAnimatior.GetComponent<FadeAnimationPlayer>();
+                    changer.FadeComplete.AddListener(SpawnPlayer);
+                    changer.StartFading();
                 }
                 else
                 {
