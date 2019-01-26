@@ -59,8 +59,8 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Spawn(Vector3 position)
     {
-        this.gameObject.transform.position = position;
         mainCamera.SetTarget(this.gameObject);
+        this.gameObject.transform.position = position;
         this.gameObject.SetActive(true);
         onSpawnFrame = true;
     }

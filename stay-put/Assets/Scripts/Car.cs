@@ -10,7 +10,7 @@ public class Car : MonoBehaviour
 
     public Waypoint targetWP;
     public PlayerCharacter pc;
-    private LookAt mainCamera;
+    public LookAt mainCamera;
     private Rigidbody rbody;
     //    private Waypoint lastWP;
     private ScreenNotifications notifications;
@@ -107,7 +107,8 @@ public class Car : MonoBehaviour
 
     public void handleWaypoint(Waypoint wp)
     {
-        if(wp.allowDriveOn())
+        Debug.Log(wp.gameObject.ToString() + wp.allowDriveOn());
+        if (wp.allowDriveOn())
         {
             targetWP = wp.getNextWaypoint();
         }

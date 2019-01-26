@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Stopwaypoint : Waypoint
 {
-    public float waitTime = 10f;
-
-    private float timer = 0f;
-    private bool countTime = false;
-    private bool doonce = true;
     private bool driveOn = false;
 
     public Pickup pickup;
@@ -29,12 +24,10 @@ public class Stopwaypoint : Waypoint
 
     public override void onVehicleEnter()
     {
-        driveOn = true;
-        /*if (doonce)
+        if (!pickup.gameObject.activeSelf)
         {
-            doonce = false;
-            countTime = true;
-        }*/
+            driveOn = true;
+        }
     }
 
     public override bool allowDriveOn()
