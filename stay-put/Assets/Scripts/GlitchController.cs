@@ -12,23 +12,40 @@ using Kino;
 public class GlitchController : MonoBehaviour
 {
     public delegate void PropertyMutator(float value);
+
+    struct Segment {
+        public float from, to;
+        public PropertyMutator mutator;
+
+        public Segment(float f, float t, PropertyMutator m) 
+        {
+            from = f;
+            to = t;
+            mutator = m;
+        }
+    }
+
     public Transform player;
     public Transform origin;
 
-    public float safeRadius;
-    public float maxRadius;
+    public float safeRadius = 1.0f;
+    public float maxRadius = 10.0f;
+    public float deltaSpawn = 0.1f;
+    public float minLength = 0.6f;
 
     private List<PropertyMutator> mutators;
+    private List<Segment> segments;
 
-    // Start is called before the first frame update
     void Start()
     {
-        mutators = new List<PropertyMutator>();
+        Random.InitState((int)System.DateTime.Now.Ticks);
 
-        foreach(PostProcessVolume v in this.GetComponents<PostProcessVolume>()) {
-            mutators.Add((float x) => {
-                v.weight = x;
-            });
+        mutators = new List<PropertyMutator>();
+        segments = new List<Segment>();
+
+        foreach(PostProcessVolume v in this.GetComponents<PostProcessVolume>()) 
+        {
+            mutators.Add((float x) => { v.weight = x; });
         }
         
         DigitalGlitch digitalGlitch = this.GetComponent<DigitalGlitch>();
@@ -42,14 +59,45 @@ public class GlitchController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float d = 0.0f;
+        float totalIntensity = 0.0f, lastSegmentFrom = -2.0f;
 
-        if(player.gameObject.activeSelf) {
-            d = Mathf.Clamp((Vector3.Distance(player.position, origin.position) - safeRadius) / maxRadius, 0.0f, 1.0f);
+        if (player.gameObject.activeSelf) 
+        {
+            var dist = Vector3.Distance(player.position, origin.position);
+            totalIntensity = Mathf.Clamp01((dist - safeRadius) / maxRadius);
         }
 
-        foreach(PropertyMutator m in mutators) {
-           m.Invoke(d); 
+        while (true)
+        {
+            int lastSegIdx = segments.FindLastIndex(s => totalIntensity <= s.from);
+            if (lastSegIdx > -1)
+            {
+                var mutator = segments[lastSegIdx].mutator;
+                mutator.Invoke(0.0f);
+                mutators.Add(mutator);
+                segments.RemoveAt(lastSegIdx);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        foreach (Segment s in segments)
+        {
+            lastSegmentFrom = s.from;
+            float value = Mathf.InverseLerp(s.from, s.to, totalIntensity);
+            s.mutator.Invoke(value);
+        }
+
+        if (lastSegmentFrom + deltaSpawn <= totalIntensity && mutators.Count > 0) 
+        {
+            if (Random.value < totalIntensity) {
+                int mutIdx = Random.Range(0, mutators.Count);
+                float to = Random.Range(totalIntensity + minLength, 1.0f);
+                segments.Add(new Segment(totalIntensity, to, mutators[mutIdx]));
+                mutators.RemoveAt(mutIdx);
+            }
         }
     }
 }
