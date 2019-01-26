@@ -5,11 +5,13 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     public float speed;
+    public float rotationSpeed;
     public Vector3 spawnOffset;
 
     public Waypoint targetWP;
     public PlayerCharacter pc;
     private LookAt mainCamera;
+    private Rigidbody rbody;
     //    private Waypoint lastWP;
     private ScreenNotifications notifications;
 
@@ -20,6 +22,7 @@ public class Car : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rbody = gameObject.GetComponent<Rigidbody>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<LookAt>();
         notifications =
                 GameObject.FindGameObjectWithTag("UI").GetComponent<ScreenNotifications>();
@@ -56,12 +59,12 @@ public class Car : MonoBehaviour
         }
         if (stopped && !pc.gameObject.activeSelf)
         {
-            notifications.SetText("Press \"space\" to leave the car");
+            if(notifications!=null) notifications.SetText("Press \"space\" to leave the car");
 
             if (Input.GetKeyDown("space"))
             {
                 SpawnPlayer();
-                notifications.SetText("");
+                if (notifications != null) notifications.SetText("");
             }
         }
     }
@@ -73,8 +76,10 @@ public class Car : MonoBehaviour
 
     private void moveTowardsNextWaypoint()
     {
-        Vector3 stopPosition = targetWP.transform.position;
-        GetComponent<Rigidbody>().position = Vector3.MoveTowards(GetComponent<Rigidbody>().position, stopPosition, speed);
+        Vector3 spatialDifference = targetWP.gameObject.transform.position - this.rbody.position;
+        Quaternion differenceDirection = Quaternion.LookRotation(spatialDifference,transform.up);
+        rbody.rotation = (Quaternion.RotateTowards(rbody.rotation, differenceDirection, rotationSpeed*Time.deltaTime));
+        rbody.MovePosition(rbody.position + transform.forward * speed * Time.deltaTime);
     }
 
     private void stop()
@@ -102,6 +107,7 @@ public class Car : MonoBehaviour
         }
         else
         {
+            inventory.handleWaypoint();
             stop();
         }
     }
