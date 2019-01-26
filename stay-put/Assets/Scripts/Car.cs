@@ -10,7 +10,7 @@ public class Car : MonoBehaviour
 
     public Waypoint targetWP;
     public PlayerCharacter pc;
-    public LookAt mainCamera;
+    public CameraCarMovementScript mainCamera;
     private Rigidbody rbody;
     //    private Waypoint lastWP;
     private ScreenNotifications notifications;
@@ -23,7 +23,7 @@ public class Car : MonoBehaviour
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody>();
-        mainCamera = GameObject.FindGameObjectWithTag("VehicleCamera").GetComponent<LookAt>();
+        mainCamera = GameObject.FindGameObjectWithTag("VehicleCamera").GetComponent<CameraCarMovementScript>();
 
         GameObject ui = GameObject.FindGameObjectWithTag("UI");
         if (ui) notifications = ui.GetComponent<ScreenNotifications>();
@@ -83,7 +83,7 @@ public class Car : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        mainCamera.gameObject.SetActive(false);
+        mainCamera.SwitchFrom();
         pc.Spawn(this.gameObject.transform.position + spawnOffset);
     }
 
@@ -107,7 +107,8 @@ public class Car : MonoBehaviour
 
     public void onPlayerEntered()
     {
-        mainCamera.gameObject.SetActive(true);
+        Debug.Log("Hello");
+        mainCamera.SwitchTo();
         Stopwaypoint swp = targetWP as Stopwaypoint;
         if (swp && swp.pickup)
         {

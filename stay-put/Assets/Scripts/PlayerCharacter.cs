@@ -40,6 +40,7 @@ public class PlayerCharacter : MonoBehaviour
             GameObject fadeAnimatior = GameObject.FindGameObjectWithTag("FadeAnimations");
             if (fadeAnimatior)
             {
+                Debug.Log("FadeTree");
                 FadeAnimationPlayer changer = fadeAnimatior.GetComponent<FadeAnimationPlayer>();
                 changer.FadeComplete.AddListener(EnterCar);
                 changer.StartFading();
@@ -53,13 +54,14 @@ public class PlayerCharacter : MonoBehaviour
 
     public void EnterCar()
     {
+        Debug.Log("olleH");
         car.onPlayerEntered();
         Despawn();
     }
 
     private void DistanceDependentActions()
     {
-        Debug.Log(Vector3.Distance(gameObject.transform.position, car.gameObject.transform.position));
+        //Debug.Log(Vector3.Distance(gameObject.transform.position, car.gameObject.transform.position));
     }
 
     private void Move()
