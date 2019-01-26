@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCharacter : MonoBehaviour
 {
     public float walkingSpeed;
+    public float rotationSpeed;
     [HideInInspector]
     public Car car;
     [HideInInspector]
@@ -48,9 +49,14 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Move()
     {
-        float xTrans = -Input.GetAxis("Horizontal") * walkingSpeed;
-        float zTrans = -Input.GetAxis("Vertical") * walkingSpeed;
-        rbody.MovePosition(rbody.position + new Vector3(xTrans, 0, zTrans));
+        float xTrans = -Input.GetAxis("Horizontal") * walkingSpeed * Time.deltaTime;
+        float zTrans = -Input.GetAxis("Vertical") * walkingSpeed * Time.deltaTime;
+        Vector3 movementDir = new Vector3(xTrans, 0, zTrans);
+        if (movementDir.magnitude > 0) { 
+            Quaternion differenceDirection = Quaternion.LookRotation(movementDir, transform.up);
+            rbody.rotation = (Quaternion.RotateTowards(rbody.rotation, differenceDirection, rotationSpeed * Time.deltaTime));
+        }
+        rbody.MovePosition(rbody.position + movementDir);
     }
 
     void LateUpdate()
