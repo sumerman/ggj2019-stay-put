@@ -32,20 +32,6 @@ public class SoundController : MonoBehaviour
         zztPlayer.volume = 0.2f;
     }
 
-
-    // Wobble effect
-    public void Wobble(double Duration, float Intensity = 1) {
-        // Only one wobble at a time
-        if (wobblingNow) {
-            return;
-        }
-        RandomiseWobble(Intensity);
-        wobbleDuration = Duration;
-        wobbleStart = Time.time;
-        wobbleVoice = synth.NewSine(wobbleFreq + wobbleLFOAmount * Math.Sin(wobbleLFOFreq * Time.time), 0.2, 1);
-        wobblingNow = true;
-    }
-
     private void RandomiseWobble(float Intensity) {
         wobbleFreq = UnityEngine.Random.value * 800 + 200;
         wobbleLFOFreq = UnityEngine.Random.value * Intensity * 24 + 1;
@@ -58,6 +44,14 @@ public class SoundController : MonoBehaviour
             if (Time.time > wobbleStart + wobbleDuration) {
                 synth.ReleaseVoice(wobbleVoice, 1);
                 wobblingNow = false;
+            }
+        } else {
+            if (UnityEngine.Random.value < wobbleIntensity * 0.05f) {
+                RandomiseWobble(wobbleIntensity);
+                wobbleDuration = 0.5f;
+                wobbleStart = Time.time;
+                wobbleVoice = synth.NewSine(wobbleFreq + wobbleLFOAmount * Math.Sin(wobbleLFOFreq * Time.time), 0.2, 1);
+                wobblingNow = true;
             }
         }
         // LFO Modulate
