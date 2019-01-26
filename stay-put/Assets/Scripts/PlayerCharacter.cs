@@ -19,8 +19,8 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody>();
-        notifications =
-                GameObject.FindGameObjectWithTag("UI").GetComponent<ScreenNotifications>();
+        GameObject ui = GameObject.FindGameObjectWithTag("UI");
+        if (ui) notifications = ui.GetComponent<ScreenNotifications>();
     }
 
     // Update is called once per frame
@@ -74,7 +74,7 @@ public class PlayerCharacter : MonoBehaviour
     public void EnableCarEnter()
     {
         Debug.Log("good to enter!");
-        notifications.SetText("Press \"space\" to enter the car");
+        if (notifications) notifications.SetText("Press \"space\" to enter the car");
         canEnterCar = true;
     }
 
@@ -83,10 +83,5 @@ public class PlayerCharacter : MonoBehaviour
         Debug.Log("No more entering!");
         if (notifications) notifications.SetText("");
         canEnterCar = false;
-    }
-
-    public void onPickedUpObject()
-    {
-        Debug.Log("picked up");
     }
 }

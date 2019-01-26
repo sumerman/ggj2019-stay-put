@@ -24,8 +24,10 @@ public class Car : MonoBehaviour
     {
         rbody = gameObject.GetComponent<Rigidbody>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<LookAt>();
-        notifications =
-                GameObject.FindGameObjectWithTag("UI").GetComponent<ScreenNotifications>();
+
+        GameObject ui = GameObject.FindGameObjectWithTag("UI");
+        if (ui) notifications = ui.GetComponent<ScreenNotifications>();
+
         pc.car = this;
         pc.mainCamera = mainCamera;
         pc.Despawn();
@@ -95,7 +97,10 @@ public class Car : MonoBehaviour
     public void onPlayerEntered()
     {
         mainCamera.SetTarget(this.gameObject);
-        inventory += targetWP.pickup.stats;
+        if (targetWP.pickup)
+        {
+            inventory += targetWP.pickup.stats;
+        }
         targetWP.onVehicleEnter();
     }
 
