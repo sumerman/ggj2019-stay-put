@@ -10,10 +10,11 @@ public class Car : MonoBehaviour
 
     public Waypoint targetWP;
     public PlayerCharacter pc;
-    public CameraCarMovementScript mainCamera;
+    public DriftCamera mainCamera;
     private Rigidbody rbody;
     //    private Waypoint lastWP;
     private ScreenNotifications notifications;
+    public MotorSoundController motorSound;
 
     private bool stopped;
 
@@ -23,7 +24,7 @@ public class Car : MonoBehaviour
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody>();
-        mainCamera = GameObject.FindGameObjectWithTag("VehicleCamera").GetComponent<CameraCarMovementScript>();
+        mainCamera = GameObject.FindGameObjectWithTag("VehicleCamera").GetComponent<DriftCamera>();
 
         GameObject ui = GameObject.FindGameObjectWithTag("UI");
         if (ui) notifications = ui.GetComponent<ScreenNotifications>();
@@ -98,6 +99,7 @@ public class Car : MonoBehaviour
     private void stop()
     {
         stopped = true;
+
     }
 
     private void start()

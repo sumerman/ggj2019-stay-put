@@ -17,8 +17,11 @@ public class DriftCamera : MonoBehaviour
     public Transform positionTarget;
     public Transform sideView;
     public AdvancedOptions advancedOptions;
+    public AudioSource radioSource;
 
     bool m_ShowingSideView;
+    private float gameTameOnDisable;
+    private float trackTimeOnDisable;
 
     private void FixedUpdate ()
     {
@@ -53,5 +56,22 @@ public class DriftCamera : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
             transform.LookAt(lookAtTarget);
         }
+    }
+
+    public void SwitchTo()
+    {
+        gameObject.SetActive(true);
+        float timeElapsed = Time.fixedTime - gameTameOnDisable;
+        radioSource.time = trackTimeOnDisable + timeElapsed;
+        //if (audioSource) audioSource.mute = false;
+        radioSource.Play();
+    }
+
+    public void SwitchFrom()
+    {
+        gameTameOnDisable = Time.fixedTime;
+        trackTimeOnDisable = radioSource.time;
+        //if (audioSource) audioSource.mute = true;
+        gameObject.SetActive(false);
     }
 }

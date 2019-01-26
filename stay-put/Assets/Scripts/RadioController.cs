@@ -7,11 +7,11 @@ public class RadioController : MonoBehaviour
 {
     public AudioClip[] songs;
     private int currentSong = 0;
-    private AudioSource source;
+    public AudioSource source;
 
     void Awake()
     {
-        source = gameObject.GetComponent<AudioSource>();
+        //source = gameObject.GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
