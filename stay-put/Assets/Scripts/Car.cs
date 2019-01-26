@@ -11,6 +11,7 @@ public class Car : MonoBehaviour
     public PlayerCharacter pc;
     private LookAt mainCamera;
     //    private Waypoint lastWP;
+    private ScreenNotifications notifications;
 
     private bool stopped;
 
@@ -18,6 +19,8 @@ public class Car : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<LookAt>();
+        notifications =
+                GameObject.FindGameObjectWithTag("UI").GetComponent<ScreenNotifications>();
         pc.car = this;
         pc.mainCamera = mainCamera;
         pc.Despawn();
@@ -47,9 +50,15 @@ public class Car : MonoBehaviour
                 targetWP = targetWP.getNextWaypoint();
             }*/
         }
-        if (stopped && !pc.gameObject.activeSelf && Input.GetKeyDown("space"))
+        if (stopped && !pc.gameObject.activeSelf)
         {
-            SpawnPlayer();
+            notifications.SetText("Press \"space\" to leave the car");
+
+            if (Input.GetKeyDown("space"))
+            {
+                SpawnPlayer();
+                notifications.SetText("");
+            }
         }
     }
 
