@@ -7,10 +7,28 @@ public class ScreenNotifications : MonoBehaviour
 {
     public void SetText(string text)
     {
-        Text notificationText = GetComponentInChildren<Text>();
-        if (notificationText)
+        Button notification = GetComponentInChildren<Button>();
+        if (notification)
         {
-            notificationText.text = text;
+            Text buttonText = notification.GetComponentInChildren<Text>();
+            if(buttonText)
+            {
+                notification.image.enabled = true;
+                buttonText.text = text;
+            }
+        }
+    }
+    public void DisableNotification()
+    {
+        Button notification = GetComponentInChildren<Button>();
+        if (notification)
+        {
+            Text buttonText = notification.GetComponentInChildren<Text>();
+            if (buttonText)
+            {
+                notification.image.enabled = false;
+                buttonText.text = "";
+            }
         }
     }
 }

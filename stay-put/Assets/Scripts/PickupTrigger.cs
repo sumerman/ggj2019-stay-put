@@ -22,12 +22,12 @@ public class PickupTrigger : MonoBehaviour
 
         Debug.Log("entered");
         playerIsInArea = true;
-        if (notifications) notifications.SetText("Press \"e\" to pick up");
+        if (notifications) notifications.SetText("E");
     }
 
     private void OnTriggerExit(Collider other)
     {
         playerIsInArea = false;
-        if (notifications) notifications.SetText("");
+        if (notifications) notifications.DisableNotification();
     }
 }

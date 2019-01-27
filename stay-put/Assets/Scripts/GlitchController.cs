@@ -29,6 +29,8 @@ public class GlitchController : MonoBehaviour
     public Transform player;
     public SphereCollider boundary;
 
+    public bool enableCrash = false;
+
     public float safeRadius = 1.0f;
     public float deltaSpawn = 0.1f;
     public float minLength = 0.6f;
@@ -79,7 +81,7 @@ public class GlitchController : MonoBehaviour
         if (player.gameObject.activeSelf) 
         {
             var dist = Vector3.Distance(player.position, boundary.transform.position);
-            if (dist > boundary.radius) 
+            if (dist > boundary.radius && enableCrash) 
             {
                 UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.AccessViolation);
             }
