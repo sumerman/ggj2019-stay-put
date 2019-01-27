@@ -13,7 +13,7 @@ Created at [Global Game Jam 2019](https://globalgamejam.org/2019/games/far-home-
 
 ### Additional assets
 
-- Glitch effect https://github.com/keijiro/KinoGlitch
+- Glitch effect by [@keijiro](https://github.com/keijiro/KinoGlitch)
 - Free assets from Unity Asset Store
 - Radio is music form: [bensound.com](https://www.bensound.com/royalty-free-music)
 - [Car door sound](http://soundbible.com/846-Car-Door-Close.html)
