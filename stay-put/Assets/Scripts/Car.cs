@@ -139,6 +139,7 @@ public class Car : MonoBehaviour
     public void handleWaypoint(Waypoint wp)
     {
         Debug.Log(wp.gameObject.ToString() + wp.allowDriveOn());
+        wp.SpecialCarAction();
         if (wp.allowDriveOn())
         {
             Debug.Log("Change140");

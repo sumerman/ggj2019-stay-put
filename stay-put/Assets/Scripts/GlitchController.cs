@@ -77,7 +77,7 @@ public class GlitchController : MonoBehaviour
             var dist = Vector3.Distance(player.position, boundary.transform.position);
             if (dist > boundary.radius) 
             {
-                UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.AccessViolation);
+                //UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.AccessViolation);
             }
             totalIntensity = Mathf.Clamp01((dist - safeRadius) / boundary.radius);
         }

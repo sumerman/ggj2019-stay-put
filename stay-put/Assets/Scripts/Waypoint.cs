@@ -9,7 +9,12 @@ public abstract class Waypoint : MonoBehaviour
         return nextWaypoint;
     }
 
-    void OnTriggerEnter(Collider other)
+    public virtual void SpecialCarAction()
+    {
+        return;
+    }
+
+    public virtual void OnTriggerEnter(Collider other)
     {
         Car car = other.gameObject.GetComponent<Car>();
         if (car == null) return;
