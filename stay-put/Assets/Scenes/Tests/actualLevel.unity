@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1037,11 +1037,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 444013499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 323161f37e5596f489fff53b4c717c70, type: 3}
+  m_Script: {fileID: 11500000, guid: ccef8a3b39182f84593b02c04943eecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nextWaypoint: {fileID: 56412993}
-  pickup: {fileID: 22151867}
+  pickup: {fileID: 1846559595}
+  smoke: {fileID: 1088593013}
 --- !u!4 &444013501
 Transform:
   m_ObjectHideFlags: 0
@@ -1500,15 +1501,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4222974835209083534, guid: ea5d9665088fc794a9fbd62c94fe2139,
-        type: 3}
-      propertyPath: boundary
-      value: 
-      objectReference: {fileID: 224312318}
     - target: {fileID: 373665970, guid: ea5d9665088fc794a9fbd62c94fe2139, type: 3}
       propertyPath: walkingSpeed
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4222974835209083523, guid: ea5d9665088fc794a9fbd62c94fe2139,
+        type: 3}
+      propertyPath: volumeTrigger
+      value: 
+      objectReference: {fileID: 2067825993}
     - target: {fileID: 7092754319118441184, guid: ea5d9665088fc794a9fbd62c94fe2139,
         type: 3}
       propertyPath: sharedProfile
@@ -1527,11 +1528,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3de5b534ec28d4b2c8497574de75d0f3,
         type: 2}
-    - target: {fileID: 4222974835209083523, guid: ea5d9665088fc794a9fbd62c94fe2139,
+    - target: {fileID: 4222974835209083534, guid: ea5d9665088fc794a9fbd62c94fe2139,
         type: 3}
-      propertyPath: volumeTrigger
+      propertyPath: boundary
       value: 
-      objectReference: {fileID: 2067825993}
+      objectReference: {fileID: 224312318}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea5d9665088fc794a9fbd62c94fe2139, type: 3}
 --- !u!1001 &560287485
@@ -3056,6 +3057,12 @@ Transform:
   m_Father: {fileID: 881883014}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1088593013 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2206168646332419209, guid: b7117cbb7073b2d468939ac2ab0983c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 130728236}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1095408077
 GameObject:
   m_ObjectHideFlags: 0
