@@ -42,7 +42,8 @@ public class ScreenNotifications : MonoBehaviour
                 buttonText.text = "";
             }
         }
-        //RawImage image = 
+        RawImage image = GetComponentInChildren<RawImage>();
+        if (image) image.enabled = false;
         if (animator) animator.enabled = false;
     }
 }
