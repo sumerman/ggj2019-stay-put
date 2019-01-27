@@ -97,7 +97,14 @@ public class Car : MonoBehaviour
 
     private void moveTowardsNextWaypoint()
     {
-        speed = Mathf.Min(maxSpeed, speed + 0.1f);
+        if (!stopped)
+        {
+            speed = Mathf.Min(maxSpeed, speed + maxSpeed / 2 * Time.deltaTime);
+        }
+        else
+        {
+            speed = Mathf.Max(0, speed - maxSpeed * Time.deltaTime);
+        }
         Vector3 spatialDifference = targetWP.gameObject.transform.position - this.rbody.position;
         Quaternion differenceDirection = Quaternion.LookRotation(spatialDifference,transform.up);
         rbody.rotation = (Quaternion.RotateTowards(rbody.rotation, differenceDirection, rotationSpeed*Time.deltaTime));
