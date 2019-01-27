@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   boundary: {fileID: 0}
+  enableCrash: 1
   safeRadius: 2
   deltaSpawn: 0.1
   minLength: 0.6
@@ -250,6 +251,8 @@ MonoBehaviour:
   zztItensity: 0
   wobbleIntensity: 0
   sineIntensity: 0
+  staticWaveIntensity: 0
+  staticWaveBaseFreq: 1400
 --- !u!1001 &940213851680529474
 PrefabInstance:
   m_ObjectHideFlags: 0
