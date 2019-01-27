@@ -7,6 +7,7 @@ using UnityEngine;
 public class DirectionIndicator : MonoBehaviour
 {
     public Transform target;
+    public Camera cam;
     private ParticleSystem emitter;
     // Start is called before the first frame update
     void Start()
@@ -23,8 +24,8 @@ public class DirectionIndicator : MonoBehaviour
                 emitter.Play();
             }
 
-            emitter.transform.position = Vector3.Lerp(Camera.main.transform.position, target.position, 0.2f);
-            var dist = Vector3.Distance(Camera.main.transform.position, target.position);
+            emitter.transform.position = Vector3.Lerp(cam.transform.position, target.position, 0.2f);
+            var dist = Vector3.Distance(cam.transform.position, target.position);
             var shapeMod = emitter.shape;
             shapeMod.radius =  dist * 0.1f;
             emitter.emissionRate = dist * 0.9f;
