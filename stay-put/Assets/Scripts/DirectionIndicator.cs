@@ -8,6 +8,7 @@ public class DirectionIndicator : MonoBehaviour
 {
     public Transform target;
     public Camera cam;
+    public float radA = 0.2f, rateA = 2.5f, distDiv = 6f, lerp = 0.17f;
     private ParticleSystem emitter;
     // Start is called before the first frame update
     void Start()
@@ -24,12 +25,12 @@ public class DirectionIndicator : MonoBehaviour
                 emitter.Play();
             }
 
-            emitter.transform.position = Vector3.Lerp(cam.transform.position, target.position, 0.2f);
+            emitter.transform.position = Vector3.Lerp(cam.transform.position, target.position, lerp);
             var dist = Vector3.Distance(cam.transform.position, target.position);
             var shapeMod = emitter.shape;
-            shapeMod.radius =  dist * 0.1f;
-            emitter.emissionRate = dist * 0.9f;
-            emitter.startSize = dist / 6f;
+            shapeMod.radius =  dist * radA;
+            emitter.emissionRate = dist * rateA;
+            emitter.startSize = dist / distDiv;
         } 
         else if (emitter.isEmitting)
         {
