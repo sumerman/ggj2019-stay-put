@@ -19,6 +19,7 @@ public class Car : MonoBehaviour
     private float maxSpeed;
     private bool stopped;
     private bool playStartSoundOnlyOnce = true;
+    private bool isInIntro = true;
 
     private PickupStats inventory;
 
@@ -38,11 +39,20 @@ public class Car : MonoBehaviour
         inventory = GetComponentInChildren<PickupStats>();
 
         motorSound.DriveSound();
+        GameObject fadeAnimatior = GameObject.FindGameObjectWithTag("FadeAnimations");
+        if (fadeAnimatior)
+        {
+            isInIntro = true;
+            FadeAnimationPlayer changer = fadeAnimatior.GetComponent<FadeAnimationPlayer>();
+            changer.IntroComplete.AddListener(IntroDone);
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (isInIntro) return;
+
         if (targetWP != null && stopped)
         {
             if (targetWP.allowDriveOn() && playStartSoundOnlyOnce)
@@ -88,8 +98,13 @@ public class Car : MonoBehaviour
             }
         }
     }
+    
+    public void IntroDone()
+    {
+            isInIntro = false;
+    }
 
-    public void SpawnPlayer()
+        public void SpawnPlayer()
     {
         mainCamera.SwitchFrom();
         pc.Spawn(this.gameObject.transform.position + spawnOffset);
