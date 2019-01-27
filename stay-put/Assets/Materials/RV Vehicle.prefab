@@ -265,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   rotationSpeed: 300
-  spawnOffset: {x: 0, y: 5, z: 5}
+  spawnOffset: {x: 0, y: 0.2, z: 0.2}
   targetWP: {fileID: 0}
   pc: {fileID: 0}
   mainCamera: {fileID: 0}
