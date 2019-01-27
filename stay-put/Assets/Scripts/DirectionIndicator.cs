@@ -19,12 +19,20 @@ public class DirectionIndicator : MonoBehaviour
     {
         if (target != null) 
         {
+            if (!emitter.isEmitting) {
+                emitter.Play();
+            }
+
             emitter.transform.position = Vector3.Lerp(Camera.main.transform.position, target.position, 0.2f);
             var dist = Vector3.Distance(Camera.main.transform.position, target.position);
             var shapeMod = emitter.shape;
             shapeMod.radius =  dist * 0.1f;
             emitter.emissionRate = dist * 0.9f;
             emitter.startSize = dist / 6f;
+        } 
+        else if (emitter.isEmitting)
+        {
+            emitter.Stop();
         }
     }
 }
