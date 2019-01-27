@@ -5,6 +5,7 @@ using GoldenAudio;
 
 public class SoundController : MonoBehaviour
 {
+    private int staticWaveVoice = -1;
     private int wobbleVoice = -1;
     private double wobbleFreq;
     private double wobbleLFOFreq;
@@ -25,11 +26,15 @@ public class SoundController : MonoBehaviour
     public float wobbleIntensity = 0.0f;
     [Range(0f, 1f)]
     public float sineIntensity = 0.0f;
+    [Range(0f, 1f)]
+    public float staticWaveIntensity = 0.0f;
+    public int staticWaveBaseFreq = 1400;
 
     private void Start() {
         sinesQueue = new Queue<int>();
         zztPlayer.clip = zztSound;
         zztPlayer.volume = 0.2f;
+        staticWaveVoice = synth.NewSine(staticWaveBaseFreq, 0);
     }
 
     private void RandomiseWobble(float Intensity) {
@@ -56,6 +61,11 @@ public class SoundController : MonoBehaviour
         }
         // LFO Modulate
         synth.SetFreq(wobbleVoice, wobbleFreq + wobbleLFOAmount * Math.Sin(wobbleLFOFreq * Time.time));
+    }
+
+    private void ManageStaticWave() {
+        synth.SetAmp(staticWaveVoice, staticWaveIntensity);
+        synth.SetFreq(staticWaveVoice, staticWaveBaseFreq + staticWaveIntensity * 500);
     }
 
     private void ManageSines() {
@@ -92,5 +102,6 @@ public class SoundController : MonoBehaviour
         ManageWobbles();
         ManageSines();
         ManageZztGlitch();
+        ManageStaticWave();
     }
 }

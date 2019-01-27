@@ -150,9 +150,11 @@ MonoBehaviour:
   zztPlayer: {fileID: 1129505024}
   zztSound: {fileID: 8300000, guid: 09ab843eced214dafba1c855f7d2de27, type: 3}
   synth: {fileID: 1861213916}
+  staticSynth: {fileID: 8350637748954763651}
   zztItensity: 0
   wobbleIntensity: 0
   sineIntensity: 0
+  staticWaveIntensity: 0
 --- !u!4 &453457578
 Transform:
   m_ObjectHideFlags: 0
@@ -406,3 +408,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07dbf0b3cab8646db938c5348ae70181, type: 3}
+--- !u!114 &8350637748954763651 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4770595683942361467, guid: 07dbf0b3cab8646db938c5348ae70181,
+    type: 3}
+  m_PrefabInstance: {fileID: 8350637748954763650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea8b2fd028ed4bd59eb0f619eb64e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
