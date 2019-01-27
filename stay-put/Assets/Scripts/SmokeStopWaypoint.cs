@@ -10,6 +10,6 @@ public class SmokeStopWaypoint : Stopwaypoint
     public override void SpecialCarAction()
     {
         smoke.SetActive(true);
-        coll.radius /= 5;
+        coll.radius /= 10;
     }
 }
