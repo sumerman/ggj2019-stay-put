@@ -11,7 +11,7 @@ A game by:
 about comfort zones and the fear of the unknown out there. 
 Created at [Global Game Jam 2019](https://globalgamejam.org/2019/games/far-home-1).
 
-**[Play me](https://sumerman.github.io/ggj2019-stay-put/)**
+**[Play me](https://sumerman.github.io/ggj2019-stay-put/)** (tested in Chrome & Firefox)
 
 ### Additional assets
 
