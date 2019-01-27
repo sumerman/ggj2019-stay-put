@@ -6,10 +6,12 @@ public class SmokeStopWaypoint : Stopwaypoint
 {
     public GameObject smoke;
     public SphereCollider coll;
+    public GlitchController glitcher;
 
     public override void SpecialCarAction()
     {
         smoke.SetActive(true);
-        coll.radius /= 10;
+        coll.radius /= 4;
+        glitcher.enableCrash = true;
     }
 }
