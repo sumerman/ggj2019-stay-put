@@ -6,6 +6,7 @@ public class PlayerCharacter : MonoBehaviour
 {
     public float walkingSpeed;
     public float rotationSpeed;
+    public float animationSpeed;
     [HideInInspector]
     public Car car;
     [HideInInspector]
@@ -13,6 +14,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private ScreenNotifications notifications;
     private Rigidbody rbody;
+    private Animator animator;
     private bool onSpawnFrame = true;
     private bool canEnterCar = false;
 
@@ -23,6 +25,12 @@ public class PlayerCharacter : MonoBehaviour
         rbody = gameObject.GetComponent<Rigidbody>();
         GameObject ui = GameObject.FindGameObjectWithTag("UI");
         if (ui) notifications = ui.GetComponent<ScreenNotifications>();
+        animator = GetComponent<Animator>();
+        if (animator)
+        {
+            animator.speed = animationSpeed;
+            //animator.keepAnimatorControllerStateOnDisable = false;
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -35,6 +43,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         Move();
         DistanceDependentActions();
+        AdjustAnimation();
         if (Input.GetKeyDown("space") && canEnterCar)
         {
             GameObject fadeAnimatior = GameObject.FindGameObjectWithTag("FadeAnimations");
@@ -62,6 +71,24 @@ public class PlayerCharacter : MonoBehaviour
     private void DistanceDependentActions()
     {
         //Debug.Log(Vector3.Distance(gameObject.transform.position, car.gameObject.transform.position));
+    }
+
+    private void AdjustAnimation()
+    {
+        if (animator)
+        {
+            if (Mathf.Approximately(Input.GetAxis("Horizontal"), 0.0f) &&
+                Mathf.Approximately(Input.GetAxis("Vertical"), 0.0f))
+            {
+                animator.Play("Walk", 0, 0);
+                animator.enabled = false;
+            }
+            else
+            {
+                animator.enabled = true;
+                animator.Play("Walk");
+            }
+        }
     }
 
     private void Move()
