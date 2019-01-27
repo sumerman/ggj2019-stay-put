@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stopwaypoint : Waypoint
 {
-    private bool driveOn = false;
+    protected bool driveOn = false;
 
     public Pickup pickup;
 
