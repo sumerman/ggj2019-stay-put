@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class ScreenNotifications : MonoBehaviour
 {
+    public Animator animator;
+
+    void Start()
+    {
+        if (animator) animator.enabled = false;
+    }
+
     public void SetText(string text)
     {
         Button notification = GetComponentInChildren<Button>();
@@ -15,6 +22,11 @@ public class ScreenNotifications : MonoBehaviour
             {
                 notification.image.enabled = true;
                 buttonText.text = text;
+            }
+
+            if (animator && text == " ")
+            {
+                animator.enabled = true;
             }
         }
     }
@@ -30,5 +42,7 @@ public class ScreenNotifications : MonoBehaviour
                 buttonText.text = "";
             }
         }
+        //RawImage image = 
+        if (animator) animator.enabled = false;
     }
 }
