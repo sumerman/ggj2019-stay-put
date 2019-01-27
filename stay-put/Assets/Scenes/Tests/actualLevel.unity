@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf8f6e92fb0db045871ee00c276d7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextWaypoint: {fileID: 1737944701}
+  nextWaypoint: {fileID: 0}
 --- !u!65 &433648651
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1500,15 +1500,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 373665970, guid: ea5d9665088fc794a9fbd62c94fe2139, type: 3}
-      propertyPath: walkingSpeed
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 4222974835209083534, guid: ea5d9665088fc794a9fbd62c94fe2139,
         type: 3}
       propertyPath: boundary
       value: 
       objectReference: {fileID: 224312318}
+    - target: {fileID: 373665970, guid: ea5d9665088fc794a9fbd62c94fe2139, type: 3}
+      propertyPath: walkingSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092754319118441184, guid: ea5d9665088fc794a9fbd62c94fe2139,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 616d945cbd40347c3b31ca79b59d8038,
+        type: 2}
+    - target: {fileID: 4222974835209083522, guid: ea5d9665088fc794a9fbd62c94fe2139,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b2f274ee7e8a415d934178f5f9f9ea1,
+        type: 2}
+    - target: {fileID: 4222974835209083528, guid: ea5d9665088fc794a9fbd62c94fe2139,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 3de5b534ec28d4b2c8497574de75d0f3,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea5d9665088fc794a9fbd62c94fe2139, type: 3}
 --- !u!1001 &560287485
@@ -3311,8 +3329,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4471611476957086}
-  - {fileID: 4099236725934840}
-  - {fileID: 4860313454268592}
+  - {fileID: 2627324575308782356}
+  - {fileID: 5097620142838015006}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5423,23 +5441,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &4099236725934840 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4099236725934840, guid: 2ee13c7e0193fbd42bad5e20cd748d8e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2627324575308782355}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4471611476957086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4471611476957086, guid: 1c0c5614326ef0e42b7ba3cadbac5b03,
     type: 3}
   m_PrefabInstance: {fileID: 4219243174850724930}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4860313454268592 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4860313454268592, guid: 03e3d2189ed945f4f9ab29c8829d33d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 5097620142838015005}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2182283058364288809 stripped
 MonoBehaviour:
@@ -5460,10 +5466,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1276119159}
     m_Modifications:
-    - target: {fileID: 1733534676060656, guid: 2ee13c7e0193fbd42bad5e20cd748d8e, type: 3}
-      propertyPath: m_Name
-      value: GasPump
-      objectReference: {fileID: 0}
     - target: {fileID: 4099236725934840, guid: 2ee13c7e0193fbd42bad5e20cd748d8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.74578
@@ -5508,8 +5510,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1733534676060656, guid: 2ee13c7e0193fbd42bad5e20cd748d8e, type: 3}
+      propertyPath: m_Name
+      value: GasPump
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ee13c7e0193fbd42bad5e20cd748d8e, type: 3}
+--- !u!4 &2627324575308782356 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 2627324575308782355}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4219243174850724930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5582,10 +5593,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1276119159}
     m_Modifications:
-    - target: {fileID: 1262370006701018, guid: 03e3d2189ed945f4f9ab29c8829d33d4, type: 3}
-      propertyPath: m_Name
-      value: GasStation (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4860313454268592, guid: 03e3d2189ed945f4f9ab29c8829d33d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -45.39206
@@ -5630,8 +5637,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1262370006701018, guid: 03e3d2189ed945f4f9ab29c8829d33d4, type: 3}
+      propertyPath: m_Name
+      value: GasStation (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03e3d2189ed945f4f9ab29c8829d33d4, type: 3}
+--- !u!4 &5097620142838015006 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 5097620142838015005}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8906838839835236410
 PrefabInstance:
   m_ObjectHideFlags: 0
