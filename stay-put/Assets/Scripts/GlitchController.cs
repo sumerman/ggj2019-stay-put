@@ -63,6 +63,10 @@ public class GlitchController : MonoBehaviour
         });
         mutators.Add((float x) => { 
             analogGlitch.verticalJump = x * 0.4f;
+            glitchSounds.staticWaveIntensity = x * 0.7f;
+        });
+        mutators.Add((float x) => { 
+            analogGlitch.colorDrift = x * 0.4f;
             glitchSounds.wobbleIntensity = Mathf.Clamp01(x - 0.1f);
         });
     }

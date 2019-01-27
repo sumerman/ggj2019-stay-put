@@ -32,6 +32,15 @@ namespace GoldenAudio {
             }
         }
 
+        public void SetAmp(int Voice, double Amp) {
+            for (int i = generatorTable.Count - 1; i >= 0; i--) {
+                if (generatorTable[i].Voice == Voice) {
+                    generatorTable[i].Amp = Amp;
+                }
+            }
+        }
+
+
         private void ReleaseI(int i, double Release = 0) {
             generatorTable[i].Release = Release;
             generatorTable[i].IsReleasing = true;
