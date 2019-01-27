@@ -20,6 +20,7 @@ public class Car : MonoBehaviour
     private bool stopped;
     private bool playStartSoundOnlyOnce = true;
     private bool isInIntro = true;
+    private bool tutorialShown = false;
 
     private PickupStats inventory;
 
@@ -78,7 +79,11 @@ public class Car : MonoBehaviour
         }
         if (stopped && !pc.gameObject.activeSelf)
         {
-            if(notifications!=null) notifications.SetText("Press \"space\" to leave the car");
+            if (notifications != null && !tutorialShown)
+            {
+                notifications.SetText(" ");
+                tutorialShown = true;
+            }
 
             if (Input.GetKeyDown("space"))
             {
@@ -93,8 +98,6 @@ public class Car : MonoBehaviour
                 {
                     SpawnPlayer();
                 }
-
-                if (notifications != null) notifications.SetText("");
             }
         }
     }
@@ -104,10 +107,11 @@ public class Car : MonoBehaviour
             isInIntro = false;
     }
 
-        public void SpawnPlayer()
+    public void SpawnPlayer()
     {
         mainCamera.SwitchFrom();
         pc.Spawn(this.gameObject.transform.position + spawnOffset);
+        if (notifications != null) notifications.DisableNotification();
     }
 
     private void moveTowardsNextWaypoint()
@@ -147,6 +151,7 @@ public class Car : MonoBehaviour
 
     public void onPlayerEntered()
     {
+        if (notifications != null) notifications.DisableNotification();
         playStartSoundOnlyOnce = true;
         Debug.Log(targetWP);
         mainCamera.SwitchTo();

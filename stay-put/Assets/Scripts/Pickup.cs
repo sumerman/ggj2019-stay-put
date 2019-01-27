@@ -14,7 +14,8 @@ public class Pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("e") && GetComponentInChildren<PickupTrigger>().playerIsInArea)
+        if (Input.GetKeyDown("e") && GetComponentInChildren<PickupTrigger>() 
+            && GetComponentInChildren<PickupTrigger>().playerIsInArea)
         {
             Debug.Log("picked up");
             this.gameObject.SetActive(false);
@@ -26,7 +27,7 @@ public class Pickup : MonoBehaviour
                     GameObject.FindGameObjectWithTag("UI").GetComponent<ScreenNotifications>();
                 if (notifications)
                 {
-                    notifications.SetText("");
+                    notifications.DisableNotification();
                 }
             }
         }

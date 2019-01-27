@@ -131,14 +131,14 @@ public class PlayerCharacter : MonoBehaviour
     public void EnableCarEnter()
     {
         Debug.Log("good to enter!");
-        if (notifications) notifications.SetText("Press \"space\" to enter the car");
+        //if (notifications) notifications.SetText(" ");
         canEnterCar = true;
     }
 
     public void DisableCarEnter()
     {
         Debug.Log("No more entering!");
-        if (notifications) notifications.SetText("");
+        //if (notifications) notifications.DisableNotification();
         canEnterCar = false;
     }
 }
