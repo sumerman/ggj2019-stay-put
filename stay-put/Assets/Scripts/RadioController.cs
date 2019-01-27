@@ -9,6 +9,8 @@ public class RadioController : MonoBehaviour
     private int currentSong = 0;
     public AudioSource source;
 
+    private bool isInIntro = false;
+
     void Awake()
     {
         //source = gameObject.GetComponent<AudioSource>();
@@ -17,6 +19,23 @@ public class RadioController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject fadeAnimatior = GameObject.FindGameObjectWithTag("FadeAnimations");
+        if (fadeAnimatior)
+        {
+            isInIntro = true;
+            FadeAnimationPlayer changer = fadeAnimatior.GetComponent<FadeAnimationPlayer>();
+            changer.IntroComplete.AddListener(IntroDone);
+        }
+        else
+        {
+            source.clip = songs[currentSong];
+            source.Play();
+        }
+    }
+
+    public void IntroDone()
+    {
+        isInIntro = false;
         source.clip = songs[currentSong];
         source.Play();
     }
@@ -24,6 +43,8 @@ public class RadioController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isInIntro) return;
+
         if(!source.isPlaying)
         {
             currentSong = (currentSong + 1) % songs.Length;
