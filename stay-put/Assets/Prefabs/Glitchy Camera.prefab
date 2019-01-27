@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4222974836192758642}
   - component: {fileID: 4222974836192758645}
   - component: {fileID: 4222974836192758641}
-  - component: {fileID: 7092754318957202194}
   - component: {fileID: 4222974836192758640}
   - component: {fileID: 4222974836192758650}
   - component: {fileID: 4222974836192758654}
@@ -151,23 +150,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &7092754318957202194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4222974836192758644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 616d945cbd40347c3b31ca79b59d8038, type: 2}
-  isGlobal: 1
-  blendDistance: 0
-  weight: 1
-  priority: 0
 --- !u!114 &4222974836192758640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,9 +228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  origin: {fileID: 0}
+  boundary: {fileID: 0}
   safeRadius: 2
-  maxRadius: 8
   deltaSpawn: 0.1
   minLength: 0.6
 --- !u!114 &2240885271909189309

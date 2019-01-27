@@ -218,6 +218,7 @@ Transform:
   - {fileID: 778828934490126285}
   - {fileID: 2206168646331928745}
   - {fileID: 8641549298954999777}
+  - {fileID: 9142334967850717761}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -625,7 +626,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.9528302, g: 0.8483418, b: 0.63372195, a: 1}
-  m_Intensity: 10
+  m_Intensity: 4
   m_Range: 100
   m_SpotAngle: 40
   m_CookieSize: 10
@@ -751,6 +752,36 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &7377084670225104399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9142334967850717761}
+  m_Layer: 8
+  m_Name: BloomVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9142334967850717761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7377084670225104399}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4538483577111808}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7386755143598802244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,7 +1123,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.9528302, g: 0.8483418, b: 0.63372195, a: 1}
-  m_Intensity: 10
+  m_Intensity: 4
   m_Range: 100
   m_SpotAngle: 40
   m_CookieSize: 10

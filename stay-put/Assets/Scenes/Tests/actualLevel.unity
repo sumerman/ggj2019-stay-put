@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf8f6e92fb0db045871ee00c276d7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextWaypoint: {fileID: 0}
+  nextWaypoint: {fileID: 1737944701}
 --- !u!65 &433648651
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1527,6 +1527,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3de5b534ec28d4b2c8497574de75d0f3,
         type: 2}
+    - target: {fileID: 4222974835209083523, guid: ea5d9665088fc794a9fbd62c94fe2139,
+        type: 3}
+      propertyPath: volumeTrigger
+      value: 
+      objectReference: {fileID: 2067825993}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea5d9665088fc794a9fbd62c94fe2139, type: 3}
 --- !u!1001 &560287485
@@ -2244,6 +2249,11 @@ PrefabInstance:
       propertyPath: radioSource
       value: 
       objectReference: {fileID: 1077696828}
+    - target: {fileID: 3195676537010416089, guid: 856356faf8c204d08aff49e1b379cc5b,
+        type: 3}
+      propertyPath: volumeTrigger
+      value: 
+      objectReference: {fileID: 2067825993}
     m_RemovedComponents:
     - {fileID: 5387306142243019925, guid: 856356faf8c204d08aff49e1b379cc5b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 856356faf8c204d08aff49e1b379cc5b, type: 3}
@@ -5084,6 +5094,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040428514}
   m_CullTransparentMesh: 0
+--- !u!4 &2067825993 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4713498254397606, guid: ea5d9665088fc794a9fbd62c94fe2139,
+    type: 3}
+  m_PrefabInstance: {fileID: 539065201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2076229335
 GameObject:
   m_ObjectHideFlags: 0
@@ -5466,6 +5482,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1276119159}
     m_Modifications:
+    - target: {fileID: 1733534676060656, guid: 2ee13c7e0193fbd42bad5e20cd748d8e, type: 3}
+      propertyPath: m_Name
+      value: GasPump
+      objectReference: {fileID: 0}
     - target: {fileID: 4099236725934840, guid: 2ee13c7e0193fbd42bad5e20cd748d8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.74578
@@ -5510,15 +5530,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1733534676060656, guid: 2ee13c7e0193fbd42bad5e20cd748d8e, type: 3}
-      propertyPath: m_Name
-      value: GasPump
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ee13c7e0193fbd42bad5e20cd748d8e, type: 3}
 --- !u!4 &2627324575308782356 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4099236725934840, guid: 2ee13c7e0193fbd42bad5e20cd748d8e,
+    type: 3}
   m_PrefabInstance: {fileID: 2627324575308782355}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4219243174850724930
@@ -5593,6 +5610,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1276119159}
     m_Modifications:
+    - target: {fileID: 1262370006701018, guid: 03e3d2189ed945f4f9ab29c8829d33d4, type: 3}
+      propertyPath: m_Name
+      value: GasStation (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4860313454268592, guid: 03e3d2189ed945f4f9ab29c8829d33d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -45.39206
@@ -5637,15 +5658,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1262370006701018, guid: 03e3d2189ed945f4f9ab29c8829d33d4, type: 3}
-      propertyPath: m_Name
-      value: GasStation (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03e3d2189ed945f4f9ab29c8829d33d4, type: 3}
 --- !u!4 &5097620142838015006 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4860313454268592, guid: 03e3d2189ed945f4f9ab29c8829d33d4,
+    type: 3}
   m_PrefabInstance: {fileID: 5097620142838015005}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8906838839835236410
