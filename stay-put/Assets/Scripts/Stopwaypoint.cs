@@ -24,6 +24,7 @@ public class Stopwaypoint : Waypoint
 
     public override void onVehicleEnter()
     {
+        Debug.Log(pickup.gameObject.activeSelf);
         if (!pickup.gameObject.activeSelf)
         {
             driveOn = true;

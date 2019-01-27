@@ -47,6 +47,7 @@ public class Car : MonoBehaviour
         {
             if (targetWP.allowDriveOn() && playStartSoundOnlyOnce)
             {
+                Debug.Log("Change50");
                 targetWP = targetWP.getNextWaypoint();
                 StartCoroutine(start());
                 playStartSoundOnlyOnce = false;
@@ -125,7 +126,7 @@ public class Car : MonoBehaviour
     public void onPlayerEntered()
     {
         playStartSoundOnlyOnce = true;
-        Debug.Log("Hello");
+        Debug.Log(targetWP);
         mainCamera.SwitchTo();
         Stopwaypoint swp = targetWP as Stopwaypoint;
         if (swp && swp.pickup)
@@ -140,6 +141,7 @@ public class Car : MonoBehaviour
         Debug.Log(wp.gameObject.ToString() + wp.allowDriveOn());
         if (wp.allowDriveOn())
         {
+            Debug.Log("Change140");
             targetWP = wp.getNextWaypoint();
         }
         else
